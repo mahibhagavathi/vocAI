@@ -1,81 +1,123 @@
 SAMPLE_CALLS = [
-    {
-        "title": "Double-Billing Complaint – Telecom",
-        "type": "Billing",
-        "duration": "~8 min",
-        "outcome": "Unresolved",
-        "preview": "Customer charged twice for the same month. Agent struggles to locate the account...",
-        "transcript": """Agent: Thank you for calling TeleMax Support, my name is Kevin, how can I help you today?
-Customer: Hi Kevin, I'm calling because I've been charged twice this month for my plan. I see two identical charges of $79.99 on my bank statement.
-Agent: I'm sorry to hear that. Can I get your account number or the phone number on the account?
-Customer: Sure, it's 555-384-2291.
-Agent: Let me pull that up... okay, I see your account. Can you tell me the dates of the charges?
-Customer: Both are from October 3rd. Same amount, same description. This is really frustrating because this is the third time this has happened this year.
-Agent: I understand. Let me check the billing system... I'm seeing one charge here on our end.
-Customer: That can't be right. I have my bank statement right in front of me. Two charges. I'm not making this up.
-Agent: I believe you, I'm just saying what I see on our system. It might be a bank issue.
-Customer: A bank issue? Your company has done this before. I had to call three times last March to get a refund. This is unacceptable.
-Agent: I understand you're frustrated. What I can do is submit a ticket and have our billing team investigate within 3 to 5 business days.
-Customer: 3 to 5 business days? I need this resolved today. Can I speak to a supervisor?
-Agent: A supervisor isn't available right now. I can have one call you back.
-Customer: This is ridiculous. You're telling me you can't even see the duplicate charge and now there's no supervisor? This is exactly the kind of service that makes me want to cancel.
-Agent: I really apologize for the inconvenience. I'll escalate this as urgent and make sure someone calls you back within 24 hours.
-Customer: Fine. But if this isn't fixed by tomorrow, I'm disputing the charge with my bank and cancelling my account.
-Agent: I completely understand. I've noted everything on your account. Is there anything else I can help you with?
-Customer: No. Goodbye.
-Agent: Thank you for calling, have a—
+   
+    "title": "Wrong Product Delivered",
+    "type": "Delivery Issue / Wrong Item Received",
+    "duration": "~12 min",
+    "outcome": "Unresolved",
+    "preview": "Customer received incorrect product (cheap headphones instead of premium earbuds). Multiple emails ignored, highly frustrated escalation request denied...",
+    "transcript": """Agent: Thank you for calling Amazon Customer Service, this is Rahul, how may I assist you today?
+Customer: Mujhe galat product deliver hua hai and I’ve already sent 3 emails. No response. Zero. Nothing. Kitna bekar customer service hai ye.
+Agent: I’m really sorry to hear that, Sir. Can you please share your order ID so I can check this for you?
+Customer: Yeah, it’s ORDER #AMZ48291055. I ordered Sony WF-1000XM5 earbuds, but I got some cheap wired headphones instead. Like seriously?
+Agent: Let me quickly check... yes I do see your order. I’m sorry for the inconvenience. Can you confirm what exactly was delivered?
+Customer: I already told you. ₹25,000 ke earbuds order kiye the and you guys sent me some random ₹500 wired earphones. Box bhi damaged hai. This is ridiculous.
+Agent: I completely understand your frustration. Let me raise a replacement request for you.
+Customer: Replacement? Are you even listening? I’ve already emailed three times in the last 7 days. No one replied. I even attached photos. This is just bad service.
+Agent: I apologize for that. I can see the emails might not have been responded to yet. I will escalate this internally.
+Customer: Escalate? I don’t want escalation. I want my correct product or refund TODAY. I needed these for travel. Now it’s useless.
+Agent: I understand. However, replacement or refund requests usually take 3–5 business days for review.
+Customer: 3–5 days again? Every time same script. First no email reply, now no resolution. What is this service? Amazon used to be good, now it’s just frustrating.
+Agent: I’m really sorry you feel that way. I will mark this as high priority and escalate it to our fulfillment team.
+Customer: High priority doesn’t mean anything. Last time also same thing happened with my order ORDER #AMZ48110233 and nothing changed.
+Agent: I do see that previous interaction. I sincerely apologize for the repeated inconvenience.
+Customer: Look, I just want my correct product delivered. I don’t care about tickets anymore. Can I talk to a supervisor?
+Agent: I can request a callback from a supervisor within 24–48 hours.
+Customer: 24–48 hours? Seriously? I’ve already waited a week with emails ignored. This is unacceptable. I was supposed to gift these to someone. This service is just absolutely pathetic.
+Agent: I truly understand your frustration. I will personally mark this as urgent and ensure it is followed up.
+Customer: Fine. But if I don’t get resolution in 48 hours, I’m filing a chargeback and posting this experience everywhere.
+Agent: I understand. I’ve documented everything on your case. Is there anything else I can help you with today?
+Customer: No. I’m done.
+Agent: Thank you for calling Amazon Customer Service.
 Customer: *hangs up*"""
-    },
+},
     {
-        "title": "SaaS Cancellation Prevention",
-        "type": "Cancellation",
-        "duration": "~12 min",
-        "outcome": "Resolved",
-        "preview": "Customer wants to cancel subscription due to pricing. Agent successfully retains with discount offer...",
-        "transcript": """Agent: Hi there, this is Sarah from Cloudify Customer Success. I see you've submitted a cancellation request — I'm hoping I can help you today. What's prompted this decision?
-Customer: Honestly, it's the price. We're a small startup and $299 a month is hard to justify right now. We love the product but it's just too expensive.
-Agent: I completely hear you. Running lean is so important in the early stages. Can I ask — what features do you use most often?
-Customer: Mainly the automated reporting and the integrations with Slack. The rest we barely touch.
-Agent: That's really helpful context. So it sounds like you're not necessarily unhappy with the product itself, it's more about making the economics work?
-Customer: Exactly. If it were $150 I'd keep it without question.
-Agent: I appreciate you being so direct. Here's what I can do — I have authorization to offer you a 40% loyalty discount for the next 12 months, which would bring you down to $179.40 per month. That's locked in and won't increase during that period.
-Customer: Hmm. That's actually closer. But I'm still not sure we use enough of it to justify even that.
-Agent: Fair enough. What if we also scheduled a 30-minute session with our onboarding team to make sure you're getting maximum value from those reporting features? A lot of our customers find they're barely scratching the surface of what's possible.
-Customer: That could actually be helpful. We've kind of been figuring it out ourselves.
-Agent: Exactly — a lot of teams do that and then realize the tool can save them 5-6 hours a week once it's set up properly. Given that, does $179 feel more reasonable if we can help you unlock more value?
-Customer: You know what, yeah. Let's do it. Can you set that up?
-Agent: Absolutely. I'm applying the discount right now and I'll send a calendar invite for the onboarding session within the hour. You'll also receive a confirmation email shortly. Is there anything else I can help with?
-Customer: No, that's great. Thanks Sarah, you've actually been really helpful.
-Agent: My pleasure! We're really glad to keep you with us. Don't hesitate to reach out anytime.
-Customer: Will do. Thanks again.
-Agent: Take care!"""
-    },
-    {
-        "title": "Technical Issue – Internet Outage",
-        "type": "Technical",
-        "duration": "~15 min",
-        "outcome": "Escalated",
-        "preview": "Customer experiencing intermittent outages for 4 days. Agent unable to resolve remotely, escalation required...",
-        "transcript": """Agent: Thank you for calling NetPro Internet Support. This is Marcus, how can I help you?
-Customer: Hi Marcus, I've been having internet outages for the past four days. It goes down every few hours for 20 to 30 minutes at a time. I work from home so this is absolutely killing my productivity.
-Agent: I'm really sorry to hear that, four days is definitely too long to be dealing with this. Let me take a look at your connection. What's the account address?
-Customer: 142 Maple Drive, unit 4B.
-Agent: Got it. Okay, I can see some signal inconsistencies on our end as well. Have you tried restarting your modem recently?
-Customer: Yes, I restart it every single time it drops. I've restarted it probably 20 times at this point.
-Agent: I understand. Let me try a remote reset from here... okay, I've sent the reset signal. Can you check if all the lights are back on?
-Customer: It's cycling... okay the lights are back. But Marcus, this happens every time and it comes back and then drops again in a few hours. A reset isn't fixing the underlying problem.
-Agent: You're absolutely right, I apologize. Looking more closely at the diagnostics, I'm seeing packet loss on the line which could indicate a physical issue either at the node or possibly your coaxial connection.
-Customer: So what does that mean for me?
-Agent: It means we likely need to send a technician out. I can schedule that for... I'm looking at Friday between 8am and 12pm, or Monday all day.
-Customer: Friday? That's three more days of this. I have video calls I can't miss. Is there any way to get someone out sooner?
-Agent: Let me check for emergency slots... I do see a possible opening tomorrow afternoon between 2 and 6pm. However I can't 100% guarantee that slot as it depends on technician availability in your area.
-Customer: I'll take that chance. Please put me in for tomorrow afternoon.
-Agent: Done. I'm flagging this as a priority escalation given the duration and your work-from-home situation. You'll receive a confirmation text. If the technician can't make it tomorrow, we will absolutely prioritize Friday morning first thing.
-Customer: Okay. And what about compensation? I've been paying for a service I'm not receiving.
-Agent: That's completely fair. I'm applying a credit of 7 days to your account right now, and once the technician confirms the issue is resolved, call us back and we can apply an additional credit for the full outage period.
-Customer: Alright. That's fair. I just want it fixed.
-Agent: Absolutely understood. I've made detailed notes on everything. Is there anything else you need from me right now?
-Customer: No, I think that covers it. Thank you Marcus.
-Agent: Thank you for your patience, I know it's been frustrating. We'll get this sorted for you."""
-    }
-]
+    "title": "Spilled Order & Missing Items – Food Delivery Complaint",
+    "type": "Delivery Issue / Food Quality",
+    "duration": "~19 min",
+    "outcome": "Resolved",
+    "preview": "Customer receives heavily spilled order with missing items due to poor packaging. After multiple holds and escalation, issue resolved with refund option + replacement + compensation coupon...",
+    "transcript": """Agent: Hi, thank you for calling Swiggy Support, this is Ananya. How can I help you today?
+Customer: Ananya,My order is completely ruined. Food is spilled, half items are missing. I can't even eat this.
+Agent: I’m really sorry to hear that. Can I get your order ID please?
+Customer: Yeah, QB7894521. I ordered paneer butter masala combo with naan, rice and gulab jamun. What I received is just a mess in a box.
+Agent: I truly apologize for this experience. Let me check your order details… please allow me a moment.
+Customer: Please be quick. I already waited late delivery and now this.
+Agent: I understand. I’m just reviewing delivery and restaurant notes.
+Customer: The bag was literally leaking. It looks like no one cared during packing or delivery.
+Agent: I completely understand your frustration. I’m going to place you on a short hold while I coordinate with the delivery partner and restaurant. It should take 2–3 minutes.
+Customer: Fine, but please don’t keep me waiting too long.
+Agent: Thank you for your patience.
+*Customer on hold for 4 minutes*
+Agent: Hi, thank you for waiting. Delivery partner mentioned the bag was slightly unstable at pickup, but restaurant confirms all items were packed.
+Customer: So basically everyone is blaming each other and I’m the one suffering.
+Agent: I understand how that feels. I will investigate further with the restaurant regarding packaging. Please allow me another brief hold of 3–4 minutes.
+Customer: This is already too much.
+Agent: I apologize, I’ll be right back.
+*Customer on hold for 5 minutes*
+Agent: Thank you for waiting. I spoke to the restaurant. They confirmed gravy containers were not sealed properly, which likely caused the spill.
+Customer: Exactly. So it’s packaging failure. And now I have no proper food.
+Agent: Yes, and I sincerely apologize for that. I want to resolve this immediately for you. I’ll give you a few options so we can fix this right away.
+Customer: Okay… finally.
+Agent: Here are the options:
+Agent: 1) I can process a FULL REFUND — and you can choose either:
+   - Refund back to your original payment method (bank/account), OR
+   - Refund to your Swiggy wallet (instant credit for future orders)
+Agent: 2) I can place a REPLACEMENT ORDER immediately with priority delivery so you receive fresh food within 30–40 minutes.
+Agent: Additionally, as an apology for the inconvenience, I will also add a 10% coupon to your account which you can use on your next order.
+Customer: Hmm… I don’t trust another delivery right now honestly. Last one was such a mess.
+Agent: I completely understand. Many customers in similar situations prefer refund + wallet credit for instant use.
+Customer: If I take refund to wallet, how fast is it?
+Agent: It will be instant within 1 hour — you can use it immediately for another order today if needed.
+Customer: Okay… then do wallet refund. And add that coupon also.
+Agent: Absolutely. I’m processing:
+- Full refund to your Swiggy wallet
+- 10% apology coupon added to your account
+- And I’ll also escalate the packaging issue with the restaurant for review
+Customer: Alright. At least something got resolved properly this time.
+Agent: I’m really sorry again for the experience. Is there anything else I can help you with today?
+Customer: No, that’s it.
+Agent: Thank you for your patience, and sorry once again for the inconvenience.
+Customer: Okay.
+Agent: Take care and have a better day ahead."""
+},
+   {
+    "title": "AC Installation Delay – Post Sales Support Issue",
+    "type": "Installation / Service Delay",
+    "duration": "~20 min",
+    "outcome": "Escalated",
+    "preview": "Customer purchased AC but installation delayed. Agent unable to secure technician commitment, escalated to regional service head...",
+    "transcript": """Agent: Thank you for calling CoolHome Appliances Support, this is Rohan. How may I assist you today?
+Customer: Assist? Bhai I’ve been calling you guys for 6 days now. AC deliver ho chuka hai but installation ke liye koi aa hi nahi raha. Gurgaon ki heat mein main literally roast ho raha hoon.
+Agent: I’m really sorry to hear that, sir. That sounds very uncomfortable. Can I have your order ID please?
+Customer: Yeah, it’s CHO558912. I bought a 1.5 ton split AC, Whirlpool 5-star model. Delivery was fine. Installation is the problem.
+Agent: Let me check that for you… yes I can see the order. I also see installation requests were scheduled multiple times. I sincerely apologize for the inconvenience.
+Customer: Inconvenience? I’ve called your installation guy FIVE TIMES OVER THE LAST 6 DAYS. Every time he says “aaj aa raha hoon” and then nobody shows up. No call, nothing.
+Agent: I completely understand your frustration. Let me check the technician assignment status right now.
+Customer: You don’t understand. It’s 44 degrees in Gurgaon. Main fan ke saamne baith ke so raha hoon. AC mere room mein pada hai like a useless box.
+Agent: I’m really sorry sir. I’m going to place you on a brief hold while I contact the local service team and technician directly. Please allow me 2–3 minutes.
+Customer: Fine. But please don’t disappear like last time.
+Agent: I assure you I won’t.
+*Customer on hold for 5 minutes*
+Agent: Thank you for waiting. I checked with the technician assigned to your area. He mentioned workload backlog and claimed he attempted rescheduling, but I also see no confirmed visits were completed.
+Customer: Exactly. That’s the problem. Nobody is coming but system shows everything is fine.
+Agent: I understand. This is clearly a service failure from our side.
+Customer: I’ve already wasted 6 days. IS THIS HOW YOU TREAT CUSTOMERS?? How long do you expect me to survive without AC in this heat?
+Agent: Sir, I completely understand the urgency. I will escalate this immediately. Before that, I want to try one more thing — I’ll attempt to reassign a senior installation technician for same-day priority slot.
+Customer: “Try”? I’ve heard this 5 times already.
+Agent: I understand your frustration. Please allow me 2 more minutes to check priority availability.
+*Customer on hold for 3 minutes*
+Agent: Thank you for your patience. I’ve spoken to the regional dispatch team. Unfortunately, there is no guaranteed same-day slot available due to high demand, but I do have a confirmed slot for tomorrow morning between 9 AM to 11 AM with a senior technician.
+Customer: Tomorrow again? What guarantee is there he will actually come?
+Agent: I understand your concern. Given the repeated missed visits, I am marking this as a priority escalation case and assigning a dedicated supervisor to track this installation personally.
+Customer: Honestly, I just want this AC installed. I can’t sleep properly anymore.
+Agent: I completely understand. Here’s what I’m doing right now:
+- Escalating this to Regional Service Head
+- Assigning senior technician with tracked visit
+- Adding priority flag so cancellation of visit is not allowed without direct approval
+Customer: Okay… but please don’t let it fail again. Otherwise, I will never make another purchase from your brand. Absolutely disappointing! 
+Agent: I assure you I will personally follow up on this. Also, as compensation for the delay, I’m applying a service credit and arranging an extended warranty add-on at no cost.
+Customer: Fine. Just make sure someone actually shows up tomorrow.
+Agent: They will. You’ll receive a confirmed SMS with technician details shortly. Is there anything else I can help you with?
+Customer: No. Just fix this. 
+Agent: Understood. Thank you for your patience, and I sincerely apologize again for the inconvenience."""
+}]
