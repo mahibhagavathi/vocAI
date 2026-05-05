@@ -12,12 +12,8 @@ st.set_page_config(
 )
 
 # ─── Imports ──────────────────────────────────────────────────────────────────
-from styles import inject_styles
 from sample_calls import SAMPLE_CALLS
 from analyzer import analyze_transcript
-
-# ─── Styles ───────────────────────────────────────────────────────────────────
-inject_styles()
 
 # ─── Inject Global CSS ────────────────────────────────────────────────────────
 st.markdown("""
