@@ -18,26 +18,40 @@ from analyzer import analyze_transcript
 # ─── Inject Global CSS ────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-    --bg:         #0b0e17;
-    --bg2:        #111520;
-    --bg3:        #181d2e;
-    --border:     #1f2640;
-    --border2:    #2a3255;
-    --accent:     #6c63ff;
-    --accent2:    #8b85ff;
-    --accent-glow: rgba(108,99,255,0.18);
-    --green:      #00e5a0;
-    --red:        #ff4f6d;
-    --amber:      #ffb340;
-    --blue:       #40a9ff;
-    --text:       #e8eaf6;
-    --text2:      #9097b8;
-    --text3:      #5c6380;
-    --font:       'DM Sans', sans-serif;
-    --mono:       'DM Mono', monospace;
+    --bg:           #f7f6fb;
+    --bg2:          #ffffff;
+    --bg3:          #f0eef8;
+    --border:       #e2ddf2;
+    --border2:      #ccc6e8;
+    --accent:       #5b3fce;
+    --accent2:      #7c5fe6;
+    --accent3:      #9d7ff5;
+    --accent-light: rgba(91,63,206,0.08);
+    --accent-glow:  rgba(91,63,206,0.14);
+    --heading:      #2d1b69;
+    --subheading:   #5b3fce;
+    --green:        #0e9e6e;
+    --green-bg:     rgba(14,158,110,0.08);
+    --green-border: rgba(14,158,110,0.25);
+    --red:          #d63f5a;
+    --red-bg:       rgba(214,63,90,0.07);
+    --red-border:   rgba(214,63,90,0.22);
+    --amber:        #c47e0a;
+    --amber-bg:     rgba(196,126,10,0.08);
+    --amber-border: rgba(196,126,10,0.25);
+    --blue:         #2563a8;
+    --blue-bg:      rgba(37,99,168,0.08);
+    --text:         #1a1228;
+    --text2:        #4a4060;
+    --text3:        #8878aa;
+    --font:         'Plus Jakarta Sans', sans-serif;
+    --mono:         'JetBrains Mono', monospace;
+    --shadow-sm:    0 1px 4px rgba(91,63,206,0.08);
+    --shadow-md:    0 4px 16px rgba(91,63,206,0.10);
+    --shadow-lg:    0 8px 32px rgba(91,63,206,0.13);
 }
 
 html, body, [class*="css"] {
@@ -48,9 +62,10 @@ html, body, [class*="css"] {
 
 /* ─── Sidebar ─── */
 section[data-testid="stSidebar"] {
-    background: var(--bg2) !important;
+    background: #ffffff !important;
     border-right: 1px solid var(--border) !important;
     width: 280px !important;
+    box-shadow: 2px 0 12px rgba(91,63,206,0.06) !important;
 }
 section[data-testid="stSidebar"] > div {
     padding: 0 !important;
@@ -71,28 +86,30 @@ section[data-testid="stSidebar"] > div {
     padding: 28px 24px 20px 24px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 8px;
+    background: linear-gradient(135deg, #f0eef8 0%, #ffffff 100%);
 }
 .sb-brand-logo {
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: -0.5px;
-    color: var(--text);
+    color: var(--heading);
 }
 .sb-brand-logo span { color: var(--accent2); }
 .sb-brand-sub {
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--text3);
     margin-top: 3px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 /* ─── Sidebar section label ─── */
 .sb-section-label {
     padding: 6px 24px 4px;
     font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text3);
 }
@@ -106,7 +123,7 @@ section[data-testid="stSidebar"] > div {
     border-radius: 0 !important;
     padding: 11px 24px !important;
     font-size: 13.5px !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
     color: var(--text2) !important;
     cursor: pointer !important;
     transition: all 0.15s ease !important;
@@ -118,16 +135,8 @@ section[data-testid="stSidebar"] > div {
     box-shadow: none !important;
 }
 .stSidebar .stButton > button:hover {
-    background: var(--accent-glow) !important;
-    color: var(--text) !important;
-}
-
-/* Active nav item override via data hack — rely on class injection */
-.nav-active button {
-    background: var(--accent-glow) !important;
-    color: var(--accent2) !important;
-    border-left: 2px solid var(--accent2) !important;
-    font-weight: 600 !important;
+    background: var(--accent-light) !important;
+    color: var(--accent) !important;
 }
 
 /* ─── Sidebar status dots ─── */
@@ -137,9 +146,9 @@ section[data-testid="stSidebar"] > div {
     display: inline-block;
     flex-shrink: 0;
 }
-.dot-done  { background: var(--green); }
-.dot-active { background: var(--accent2); box-shadow: 0 0 6px var(--accent); }
-.dot-idle  { background: var(--border2); }
+.dot-done   { background: var(--green); }
+.dot-active { background: var(--accent2); box-shadow: 0 0 6px var(--accent-glow); }
+.dot-idle   { background: var(--border2); }
 
 /* ─── Sidebar divider ─── */
 .sb-divider {
@@ -172,8 +181,8 @@ section[data-testid="stSidebar"] > div {
 }
 .page-title {
     font-size: 22px;
-    font-weight: 600;
-    color: var(--text);
+    font-weight: 700;
+    color: var(--heading);
     letter-spacing: -0.3px;
 }
 .page-subtitle {
@@ -200,43 +209,46 @@ section[data-testid="stSidebar"] > div {
     font-weight: 500;
 }
 .bc-step.active {
-    background: var(--accent-glow);
+    background: var(--accent-light);
     border-color: var(--accent);
-    color: var(--accent2);
+    color: var(--accent);
+    font-weight: 600;
 }
 .bc-step.done {
-    background: rgba(0,229,160,0.08);
-    border-color: rgba(0,229,160,0.3);
+    background: var(--green-bg);
+    border-color: var(--green-border);
     color: var(--green);
+    font-weight: 600;
 }
 .bc-arrow { color: var(--text3); font-size: 11px; }
 
 /* ─── Input stage cards ─── */
 .input-hero {
     text-align: center;
-    padding: 48px 24px 36px;
+    padding: 52px 24px 40px;
 }
 .input-hero-title {
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    color: var(--text);
-    line-height: 1.2;
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    color: var(--heading);
+    line-height: 1.15;
 }
 .input-hero-title span { color: var(--accent2); }
 .input-hero-sub {
-    font-size: 15px;
+    font-size: 15.5px;
     color: var(--text2);
-    margin-top: 12px;
+    margin-top: 14px;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.6;
+    line-height: 1.65;
+    font-weight: 400;
 }
 
 /* ─── Tabs ─── */
 .stTabs [data-baseweb="tab-list"] {
-    background: var(--bg2) !important;
+    background: var(--bg3) !important;
     border-radius: 10px !important;
     padding: 4px !important;
     border: 1px solid var(--border) !important;
@@ -252,9 +264,11 @@ section[data-testid="stSidebar"] > div {
     font-family: var(--font) !important;
 }
 .stTabs [aria-selected="true"] {
-    background: var(--bg3) !important;
-    color: var(--text) !important;
+    background: var(--bg2) !important;
+    color: var(--accent) !important;
     border: 1px solid var(--border2) !important;
+    font-weight: 600 !important;
+    box-shadow: var(--shadow-sm) !important;
 }
 .stTabs [data-baseweb="tab-panel"] {
     padding: 24px 0 0 0 !important;
@@ -263,24 +277,25 @@ section[data-testid="stSidebar"] > div {
 /* ─── Text area ─── */
 .stTextArea textarea {
     background: var(--bg2) !important;
-    border: 1px solid var(--border) !important;
+    border: 1.5px solid var(--border2) !important;
     border-radius: 10px !important;
     color: var(--text) !important;
     font-family: var(--mono) !important;
     font-size: 13px !important;
-    line-height: 1.6 !important;
+    line-height: 1.65 !important;
     resize: vertical !important;
-    transition: border-color 0.2s !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
 }
 .stTextArea textarea:focus {
     border-color: var(--accent) !important;
     box-shadow: 0 0 0 3px var(--accent-glow) !important;
 }
+.stTextArea textarea::placeholder { color: var(--text3) !important; }
 
 /* ─── Buttons ─── */
 .stButton > button {
     background: var(--accent) !important;
-    color: #fff !important;
+    color: #ffffff !important;
     border: none !important;
     border-radius: 9px !important;
     font-weight: 600 !important;
@@ -289,35 +304,34 @@ section[data-testid="stSidebar"] > div {
     font-family: var(--font) !important;
     letter-spacing: 0 !important;
     transition: all 0.18s ease !important;
-    box-shadow: 0 4px 16px rgba(108,99,255,0.25) !important;
+    box-shadow: 0 3px 12px rgba(91,63,206,0.28) !important;
 }
 .stButton > button:hover {
     transform: translateY(-1px) !important;
-    box-shadow: 0 6px 24px rgba(108,99,255,0.4) !important;
+    box-shadow: 0 6px 20px rgba(91,63,206,0.38) !important;
     background: var(--accent2) !important;
 }
-.stButton > button:active {
-    transform: translateY(0) !important;
-}
+.stButton > button:active { transform: translateY(0) !important; }
 
 /* ─── Sample card ─── */
 .sample-card {
     background: var(--bg2);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: 12px;
     padding: 18px 20px;
     margin-bottom: 12px;
-    transition: border-color 0.2s, transform 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     cursor: default;
 }
 .sample-card:hover {
-    border-color: var(--accent);
+    border-color: var(--accent2);
+    box-shadow: var(--shadow-md);
     transform: translateY(-1px);
 }
 .sample-title {
     font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
+    font-weight: 700;
+    color: var(--heading);
     margin-bottom: 5px;
 }
 .sample-meta {
@@ -325,12 +339,13 @@ section[data-testid="stSidebar"] > div {
     color: var(--text3);
     margin-bottom: 8px;
     letter-spacing: 0.02em;
+    font-weight: 500;
 }
 .sample-preview {
     font-size: 13px;
     color: var(--text2);
     font-style: italic;
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
 /* ─── Analyzing screen ─── */
@@ -343,24 +358,26 @@ section[data-testid="stSidebar"] > div {
     text-align: center;
 }
 .analyzing-orb {
-    width: 72px; height: 72px;
+    width: 76px; height: 76px;
     border-radius: 50%;
-    background: var(--accent-glow);
-    border: 2px solid var(--accent);
+    background: linear-gradient(135deg, var(--accent-light), var(--bg3));
+    border: 2.5px solid var(--accent2);
     margin-bottom: 28px;
     animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 0 0 var(--accent-glow);
 }
 @keyframes pulse {
     0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 var(--accent-glow); }
-    50% { transform: scale(1.1); box-shadow: 0 0 0 14px transparent; }
+    50%       { transform: scale(1.08); box-shadow: 0 0 0 16px transparent; }
 }
 .analyzing-title {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--text);
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--heading);
     margin-bottom: 6px;
+    letter-spacing: -0.3px;
 }
-.analyzing-sub { font-size: 13px; color: var(--text2); margin-bottom: 32px; }
+.analyzing-sub { font-size: 14px; color: var(--text2); margin-bottom: 32px; }
 
 /* ─── Stage header ─── */
 .stage-hdr {
@@ -369,24 +386,25 @@ section[data-testid="stSidebar"] > div {
     gap: 14px;
     margin: 0 0 24px 0;
     padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
 }
 .stage-num {
     font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--accent2);
+    letter-spacing: 0.12em;
+    color: var(--accent);
     font-family: var(--mono);
-    background: var(--accent-glow);
-    border: 1px solid rgba(108,99,255,0.3);
-    padding: 3px 9px;
+    background: var(--accent-light);
+    border: 1.5px solid var(--border2);
+    padding: 3px 10px;
     border-radius: 6px;
+    text-transform: uppercase;
 }
 .stage-title {
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--text);
-    letter-spacing: -0.2px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--heading);
+    letter-spacing: -0.3px;
 }
 
 /* ─── Metric cards ─── */
@@ -398,73 +416,76 @@ section[data-testid="stSidebar"] > div {
 }
 .metric-card {
     background: var(--bg2);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: 12px;
     padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
 }
 .metric-label {
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text3);
-    margin-bottom: 8px;
+    margin-bottom: 9px;
 }
 .metric-value {
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     color: var(--text);
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
 /* ─── Summary box ─── */
 .summary-box {
     background: var(--bg2);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: 12px;
-    padding: 20px 24px;
-    margin-top: 6px;
+    padding: 22px 26px;
+    margin-top: 8px;
+    box-shadow: var(--shadow-sm);
 }
 .summary-label {
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 10px;
+    color: var(--subheading);
+    margin-bottom: 11px;
 }
 .summary-text {
     font-size: 14.5px;
     color: var(--text);
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 /* ─── Resolution badge ─── */
 .res-badge {
     display: inline-block;
     font-size: 12px;
-    font-weight: 600;
-    padding: 4px 12px;
+    font-weight: 700;
+    padding: 4px 13px;
     border-radius: 99px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
 }
-.res-resolved { background: rgba(0,229,160,0.12); color: var(--green); border: 1px solid rgba(0,229,160,0.3); }
-.res-unresolved { background: rgba(255,79,109,0.12); color: var(--red); border: 1px solid rgba(255,79,109,0.3); }
-.res-escalated { background: rgba(255,179,64,0.12); color: var(--amber); border: 1px solid rgba(255,179,64,0.3); }
+.res-resolved   { background: var(--green-bg);  color: var(--green); border: 1.5px solid var(--green-border); }
+.res-unresolved { background: var(--red-bg);    color: var(--red);   border: 1.5px solid var(--red-border); }
+.res-escalated  { background: var(--amber-bg);  color: var(--amber); border: 1.5px solid var(--amber-border); }
 
 /* ─── Expander ─── */
 details {
     background: var(--bg2) !important;
-    border: 1px solid var(--border) !important;
+    border: 1.5px solid var(--border) !important;
     border-radius: 12px !important;
     padding: 0 !important;
     margin-bottom: 12px !important;
+    box-shadow: var(--shadow-sm) !important;
 }
 details summary {
     padding: 16px 20px !important;
     font-size: 14px !important;
     font-weight: 600 !important;
-    color: var(--text) !important;
+    color: var(--heading) !important;
     cursor: pointer !important;
 }
 .exp-inner { padding: 4px 4px 8px 4px; }
@@ -478,23 +499,23 @@ details summary {
 }
 .phase-card {
     background: var(--bg3);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: 10px;
-    padding: 16px;
+    padding: 18px;
     text-align: center;
 }
-.phase-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 10px; font-weight: 600; }
-.phase-emoji { font-size: 26px; margin-bottom: 6px; }
-.phase-value { font-size: 13px; font-weight: 600; color: var(--text); }
+.phase-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--subheading); margin-bottom: 10px; font-weight: 700; }
+.phase-emoji { font-size: 28px; margin-bottom: 6px; }
+.phase-value { font-size: 13px; font-weight: 700; color: var(--text); }
 
 /* ─── Spike items ─── */
 .subsection-label {
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: var(--text3);
-    margin: 18px 0 10px 0;
+    color: var(--subheading);
+    margin: 20px 0 10px 0;
 }
 .spike-item {
     display: flex;
@@ -505,22 +526,23 @@ details summary {
 }
 .spike-badge {
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     padding: 3px 10px;
     border-radius: 99px;
-    border: 1px solid;
+    border: 1.5px solid;
     white-space: nowrap;
     flex-shrink: 0;
 }
-.spike-desc { font-size: 13.5px; color: var(--text); line-height: 1.5; }
+.spike-desc { font-size: 13.5px; color: var(--text); line-height: 1.55; }
 .critical-item {
-    background: rgba(255,179,64,0.07);
-    border: 1px solid rgba(255,179,64,0.2);
+    background: var(--amber-bg);
+    border: 1.5px solid var(--amber-border);
     border-radius: 8px;
-    padding: 10px 14px;
+    padding: 11px 15px;
     font-size: 13.5px;
     color: var(--amber);
     margin-bottom: 8px;
+    font-weight: 500;
 }
 
 /* ─── Score ring ─── */
@@ -538,6 +560,7 @@ details summary {
     align-items: center;
     justify-content: center;
     margin-bottom: 12px;
+    box-shadow: var(--shadow-md);
 }
 .score-inner {
     width: 82px; height: 82px;
@@ -548,29 +571,31 @@ details summary {
     align-items: center;
     justify-content: center;
 }
-.score-number { font-size: 26px; font-weight: 700; color: var(--text); line-height: 1; }
-.score-label { font-size: 11px; color: var(--text3); }
-.score-title { font-size: 13px; color: var(--text2); font-weight: 500; }
+.score-number { font-size: 26px; font-weight: 800; color: var(--heading); line-height: 1; }
+.score-label  { font-size: 11px; color: var(--text3); font-weight: 500; }
+.score-title  { font-size: 13px; color: var(--text2); font-weight: 600; }
 
 /* ─── Score bars ─── */
 .score-bar-row {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 12px;
+    margin-bottom: 13px;
 }
 .score-bar-label {
     width: 170px;
     font-size: 13px;
     color: var(--text2);
     flex-shrink: 0;
+    font-weight: 500;
 }
 .score-bar-track {
     flex: 1;
-    height: 6px;
+    height: 7px;
     background: var(--bg3);
     border-radius: 99px;
     overflow: hidden;
+    border: 1px solid var(--border);
 }
 .score-bar-fill {
     height: 100%;
@@ -580,7 +605,8 @@ details summary {
 .score-bar-num {
     font-size: 12px;
     font-family: var(--mono);
-    color: var(--text2);
+    color: var(--text);
+    font-weight: 600;
     width: 36px;
     text-align: right;
     flex-shrink: 0;
@@ -591,22 +617,22 @@ details summary {
     border-radius: 10px;
     padding: 14px 18px;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 10px;
     font-style: italic;
 }
 .customer-quote {
-    background: var(--bg3);
+    background: var(--blue-bg);
     border-left: 3px solid var(--blue);
     color: var(--text);
 }
 .best-quote {
-    background: rgba(0,229,160,0.07);
+    background: var(--green-bg);
     border-left: 3px solid var(--green);
     color: var(--text);
 }
 .worst-quote {
-    background: rgba(255,79,109,0.07);
+    background: var(--red-bg);
     border-left: 3px solid var(--red);
     color: var(--text);
 }
@@ -616,41 +642,43 @@ details summary {
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    padding: 14px;
+    padding: 15px;
     background: var(--bg3);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: 10px;
     margin-bottom: 10px;
 }
 .moment-icon { font-size: 20px; flex-shrink: 0; }
-.moment-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); margin-bottom: 4px; font-weight: 600; }
-.moment-desc { font-size: 13.5px; color: var(--text); line-height: 1.5; }
+.moment-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--subheading); margin-bottom: 5px; font-weight: 700; }
+.moment-desc  { font-size: 13.5px; color: var(--text); line-height: 1.55; }
 
 /* ─── Rewrite cards ─── */
 .rewrite-card {
     background: var(--bg2);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: 12px;
     padding: 18px 20px;
     margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
 }
 .rewrite-original {
     font-size: 13.5px;
     color: var(--text2);
-    line-height: 1.5;
-    margin-bottom: 10px;
+    line-height: 1.55;
+    margin-bottom: 12px;
 }
 .rewrite-arrow {
     font-size: 12px;
-    font-weight: 600;
-    color: var(--accent2);
+    font-weight: 700;
+    color: var(--subheading);
     letter-spacing: 0.05em;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 .rewrite-better {
     font-size: 13.5px;
     color: var(--green);
-    line-height: 1.5;
+    line-height: 1.55;
+    font-weight: 500;
 }
 .rw-tag {
     display: inline-block;
@@ -662,35 +690,35 @@ details summary {
     margin-right: 8px;
     vertical-align: middle;
 }
-.orig-tag { background: rgba(255,79,109,0.15); color: var(--red); }
-.better-tag { background: rgba(0,229,160,0.12); color: var(--green); }
+.orig-tag   { background: var(--red-bg);   color: var(--red); }
+.better-tag { background: var(--green-bg); color: var(--green); }
 
 /* ─── Pathway steps ─── */
 .pathway-step {
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    padding: 13px 0;
+    padding: 14px 0;
     border-bottom: 1px solid var(--border);
 }
 .pathway-num {
-    width: 26px; height: 26px;
+    width: 28px; height: 28px;
     border-radius: 50%;
-    background: var(--accent-glow);
-    border: 1px solid var(--accent);
-    color: var(--accent2);
+    background: var(--accent-light);
+    border: 1.5px solid var(--accent2);
+    color: var(--accent);
     font-size: 11px;
     font-weight: 700;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     font-family: var(--mono);
 }
-.pathway-text { font-size: 13.5px; color: var(--text); line-height: 1.5; padding-top: 2px; }
+.pathway-text { font-size: 13.5px; color: var(--text); line-height: 1.55; padding-top: 3px; }
 
 /* ─── Mistake items ─── */
 .mistake-item {
-    background: rgba(255,79,109,0.06);
-    border: 1px solid rgba(255,79,109,0.18);
+    background: var(--red-bg);
+    border: 1.5px solid var(--red-border);
     border-radius: 8px;
     padding: 11px 16px;
     font-size: 13.5px;
@@ -701,55 +729,57 @@ details summary {
 /* ─── Biz cards ─── */
 .biz-card {
     background: var(--bg2);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: 12px;
     padding: 18px 20px;
     margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
 }
 .biz-card-title {
     font-size: 13px;
     font-weight: 700;
-    color: var(--text);
-    margin-bottom: 12px;
+    color: var(--heading);
+    margin-bottom: 13px;
     letter-spacing: -0.1px;
 }
 .biz-item {
     font-size: 13.5px;
     color: var(--text2);
-    padding: 7px 0;
+    padding: 8px 0;
     border-bottom: 1px solid var(--border);
-    line-height: 1.5;
+    line-height: 1.55;
 }
 .biz-item:last-child { border-bottom: none; }
-.escalation-card { border-color: rgba(255,79,109,0.25); }
-.upsell-card { border-color: rgba(0,229,160,0.2); }
-.recs-card { border-color: rgba(108,99,255,0.3); }
-.rec-item { color: var(--text); }
+.escalation-card { border-color: var(--red-border); }
+.upsell-card     { border-color: var(--green-border); }
+.recs-card       { border-color: var(--border2); }
+.rec-item        { color: var(--text); font-weight: 500; }
 
 /* ─── Email box ─── */
 .email-wrap {
     background: var(--bg2);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
     margin-bottom: 20px;
+    box-shadow: var(--shadow-md);
 }
 .email-header {
     background: var(--bg3);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1.5px solid var(--border);
     padding: 16px 24px;
 }
 .email-subject-label {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 5px; font-weight: 600;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--subheading); margin-bottom: 5px; font-weight: 700;
 }
 .email-subject {
-    font-size: 15px; font-weight: 600; color: var(--text);
+    font-size: 15px; font-weight: 700; color: var(--heading);
 }
 .email-body {
-    padding: 22px 24px;
+    padding: 24px 26px;
     font-size: 14px;
     color: var(--text);
-    line-height: 1.75;
+    line-height: 1.8;
     white-space: pre-wrap;
     font-family: var(--font);
 }
@@ -757,27 +787,29 @@ details summary {
     font-size: 12px; color: var(--text3); padding: 12px 24px;
     border-top: 1px solid var(--border);
     background: var(--bg3);
+    font-weight: 500;
 }
 .email-type-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 14px;
+    padding: 6px 15px;
     border-radius: 99px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 18px;
 }
 
 /* ─── Warning / info ─── */
 .voc-warning {
-    background: rgba(255,179,64,0.08);
-    border: 1px solid rgba(255,179,64,0.25);
+    background: var(--amber-bg);
+    border: 1.5px solid var(--amber-border);
     border-radius: 10px;
     padding: 14px 18px;
     font-size: 13.5px;
     color: var(--amber);
     margin-bottom: 20px;
+    font-weight: 500;
 }
 
 /* ─── Footer ─── */
@@ -786,23 +818,25 @@ details summary {
     font-size: 12px;
     color: var(--text3);
     padding: 32px 0 16px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
+    font-weight: 500;
 }
 
 /* ─── Progress bar ─── */
 .stProgress > div > div {
-    background: var(--accent) !important;
+    background: linear-gradient(90deg, var(--accent), var(--accent3)) !important;
     border-radius: 99px !important;
 }
 .stProgress > div {
     background: var(--bg3) !important;
     border-radius: 99px !important;
+    border: 1px solid var(--border) !important;
 }
 
 /* ─── Select box ─── */
 .stSelectbox > div > div {
     background: var(--bg2) !important;
-    border: 1px solid var(--border) !important;
+    border: 1.5px solid var(--border2) !important;
     border-radius: 9px !important;
     color: var(--text) !important;
 }
@@ -810,20 +844,21 @@ details summary {
 /* ─── File uploader ─── */
 [data-testid="stFileUploader"] {
     background: var(--bg2) !important;
-    border: 1px dashed var(--border2) !important;
+    border: 2px dashed var(--border2) !important;
     border-radius: 12px !important;
 }
 
 /* ─── New analysis button (secondary) ─── */
 .btn-secondary button {
-    background: var(--bg3) !important;
-    border: 1px solid var(--border2) !important;
+    background: var(--bg2) !important;
+    border: 1.5px solid var(--border2) !important;
     color: var(--text2) !important;
     box-shadow: none !important;
 }
 .btn-secondary button:hover {
-    background: var(--bg2) !important;
-    color: var(--text) !important;
+    background: var(--bg3) !important;
+    color: var(--accent) !important;
+    border-color: var(--accent2) !important;
     box-shadow: none !important;
     transform: none !important;
 }
