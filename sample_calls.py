@@ -1,5 +1,5 @@
 SAMPLE_CALLS = [
-   
+   {
     "title": "Wrong Product Delivered",
     "type": "Delivery Issue / Wrong Item Received",
     "duration": "~12 min",
