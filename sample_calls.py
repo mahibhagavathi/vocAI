@@ -1,10 +1,10 @@
 SAMPLE_CALLS = [
    {
-    "title": "Wrong Product Delivered",
+    "title": "Wrong Product Delivered- E-Commerce Platform",
     "type": "Delivery Issue / Wrong Item Received",
     "duration": "~12 min",
     "outcome": "Unresolved",
-    "preview": "Customer received incorrect product (cheap headphones instead of premium earbuds). Multiple emails ignored, highly frustrated escalation request denied...",
+    "preview": "Customer received incorrect product (cheap headphones instead of premium earbuds)",
     "transcript": """Agent: Thank you for calling Amazon Customer Service, this is Rahul, how may I assist you today?
 Customer: Mujhe galat product deliver hua hai and I’ve already sent 3 emails. No response. Zero. Nothing. Kitna bekar customer service hai ye.
 Agent: I’m really sorry to hear that, Sir. Can you please share your order ID so I can check this for you?
@@ -35,7 +35,7 @@ Customer: *hangs up*"""
     "type": "Delivery Issue / Food Quality",
     "duration": "~19 min",
     "outcome": "Resolved",
-    "preview": "Customer receives heavily spilled order with missing items due to poor packaging. After multiple holds and escalation, issue resolved with refund option + replacement + compensation coupon...",
+    "preview": "Customer receives heavily spilled order with missing items due to poor packaging.",
     "transcript": """Agent: Hi, thank you for calling Swiggy Support, this is Ananya. How can I help you today?
 Customer: Ananya,My order is completely ruined. Food is spilled, half items are missing. I can't even eat this.
 Agent: I’m really sorry to hear that. Can I get your order ID please?
@@ -85,7 +85,7 @@ Agent: Take care and have a better day ahead."""
     "type": "Installation / Service Delay",
     "duration": "~20 min",
     "outcome": "Escalated",
-    "preview": "Customer purchased AC but installation delayed. Agent unable to secure technician commitment, escalated to regional service head...",
+    "preview": "Customer purchased AC but installation delayed.",
     "transcript": """Agent: Thank you for calling CoolHome Appliances Support, this is Rohan. How may I assist you today?
 Customer: Assist? Bhai I’ve been calling you guys for 6 days now. AC deliver ho chuka hai but installation ke liye koi aa hi nahi raha. Gurgaon ki heat mein main literally roast ho raha hoon.
 Agent: I’m really sorry to hear that, sir. That sounds very uncomfortable. Can I have your order ID please?
