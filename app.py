@@ -1042,17 +1042,17 @@ if st.session_state.stage == "input":
 
     st.markdown("""
     <div class="input-hero">
-        <div class="input-hero-title">Turn calls into<br><span>actionable intelligence</span></div>
+        <div class="input-hero-title">vocAI- Turn calls into<br><span>actionable intelligence</span></div>
         <div class="input-hero-sub">
-            Paste a transcript, pick a demo, or upload audio — vocAI handles the rest
+            Upload an audio, Paste a transcript, or pick a sample dataset — vocAI handles the rest
             with a 6-stage AI analysis pipeline.
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    tab1, tab2, tab3 = st.tabs(["📝  Paste Transcript", "📁  Sample Calls", "🎙️  Upload Audio"])
+    tab1, tab2, tab3 = st.tabs(["📁  Sample Calls", "🎙️  Upload Audio", "📝  Paste Transcript"])
 
-    with tab1:
+    with tab3:
         transcript_input = st.text_area(
             label="",
             placeholder="Agent: Thank you for calling Support, how can I help you today?\nCustomer: Hi, I've been charged twice for my subscription...\n...",
@@ -1067,7 +1067,7 @@ if st.session_state.stage == "input":
             else:
                 st.error("Please paste a transcript first.")
 
-    with tab2:
+    with tab1:
         for idx, sample in enumerate(SAMPLE_CALLS):
             col_info, col_btn = st.columns([4, 1])
             with col_info:
@@ -1085,7 +1085,7 @@ if st.session_state.stage == "input":
                     st.session_state.stage = "analyzing"
                     st.rerun()
 
-    with tab3:
+    with tab2:
         st.markdown('<div style="font-size:13px;color:var(--text2);margin-bottom:14px;">Upload an MP3 or WAV file — transcription powered by Groq Whisper.</div>', unsafe_allow_html=True)
         uploaded = st.file_uploader("", type=["mp3", "wav", "m4a"])
         if uploaded:
