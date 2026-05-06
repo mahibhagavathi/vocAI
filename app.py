@@ -1042,7 +1042,7 @@ if st.session_state.stage == "input":
 
     st.markdown("""
     <div class="input-hero">
-        <div class="input-hero-title">vocAI- Turn calls into<br><span>actionable intelligence</span></div>
+        <div class="input-hero-title">vocAI <br><span>Turn calls into actionable intelligence</span></div>
         <div class="input-hero-sub">
             Upload an audio, Paste a transcript, or pick a sample dataset — vocAI handles the rest
             with a 6-stage AI analysis pipeline.
@@ -1595,6 +1595,6 @@ Support Team"""
 # ─── Footer ───────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="voc-footer">
-    vocAI · Powered by Groq &amp; LLaMA · Built for Customer Excellence
+    vocAI · Powered by Groq &amp; LLaMA · Built by Mahitha Bhagavathi
 </div>
 """, unsafe_allow_html=True)
