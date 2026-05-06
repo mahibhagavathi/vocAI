@@ -929,7 +929,7 @@ STAGES = [
 ]
 
 STAGE_ICONS = {
-    1: "📄", 2: "😊", 3: "🧑‍💼", 4: "💬", 5: "✉️", 6: "🧠"
+    1: "⚡", 2: "🧠", 3: "🏆", 4: "💬", 5: "✉️", 6: "🎯"
 }
 
 with st.sidebar:
@@ -1490,20 +1490,6 @@ Support Team"""
         </div>
         """, unsafe_allow_html=True)
 
-        # Copyable version
-        with st.expander("📋  Copy raw email text"):
-            st.code(f"Subject: {subject}\n\n{body}", language=None)
-
-        st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
-        col_back, col_next = st.columns(2)
-        with col_back:
-            st.markdown('<div class="btn-secondary">', unsafe_allow_html=True)
-            if st.button("← Conversation Intelligence", key="b5_back"):
-                st.session_state.active_section = 4; st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
-        with col_next:
-            if st.button("Continue → AI Coach", key="b5_next"):
-                st.session_state.active_section = 6; st.rerun()
 
     # ─────────────────────────────────────────────────────────────────────────
     # STAGE 6 — AI COACH MODE + BUSINESS DASHBOARD
