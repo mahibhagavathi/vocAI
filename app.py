@@ -1041,12 +1041,13 @@ if st.session_state.stage == "input":
         """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div class="input-hero">
-        <div class="input-hero-title">vocAI <br><span>Turn calls into actionable intelligence</span></div>
-        <div class="input-hero-sub">
-            Upload an audio, Paste a transcript, or pick a sample dataset — vocAI handles the rest
-            with a 6-stage AI analysis pipeline.
-        </div>
+   <div class="input-hero-title">
+    vocAI <br>
+    <span>From conversations to clarity</span>
+</div>
+<div class="input-hero-sub">
+    Upload an audio file, paste a transcript, or use a sample call. In seconds, vocAI breaks it down into structured insights using a 6-stage AI analysis engine.
+</div>
     </div>
     """, unsafe_allow_html=True)
 
