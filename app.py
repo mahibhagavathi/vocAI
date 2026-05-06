@@ -18,235 +18,172 @@ for k,v in DEFAULTS.items():
 
 groq_api_key = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY",""))
 
-# ── CSS (FULL REDESIGN) ─────────────────────────────────────
+# ── Constants ────────────────────────────────────────────────
+STAGES = [
+    (1,"Instant Summary","01","⚡"),
+    (2,"Emotional Intelligence","02","🧠"),
+    (3,"Agent Performance","03","🏆"),
+    (4,"Conversation Intelligence","04","💬"),
+    (5,"Email Generator","05","✉️"),
+    (6,"AI Coach Mode","06","🎯"),
+]
+
+ANALYSIS_STEPS = [
+    "Extracting summary",
+    "Mapping emotions",
+    "Scoring performance",
+    "Understanding conversation",
+    "Generating email",
+    "Final insights",
+]
+
+# ── CSS (UPDATED ONLY) ──────────────────────────────────────
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root{
---bg:#f9fbfb;
---card:#ffffff;
---border:#e6f0ef;
---text:#0f172a;
---sub:#5f6f73;
+--bg:#f7fbfb;
+--bg2:#ffffff;
+--bg3:#eef7f6;
+
+--border:#dcefed;
+--border2:#c6e3df;
 
 --accent:#0ea5a4;
---accent-soft:#e6f7f6;
---accent-strong:#0891b2;
+--accent2:#14b8a6;
 
---radius:14px;
---shadow:0 4px 20px rgba(0,0,0,0.04);
+--text:#0f172a;
+--text2:#475569;
+--text3:#94a3b8;
+
+--font:'Inter',sans-serif;
+
+--shadow-sm:0 2px 6px rgba(0,0,0,0.04);
+--shadow-md:0 6px 20px rgba(0,0,0,0.06);
 }
 
 html,body,[class*="css"]{
-font-family:'Inter',sans-serif!important;
+font-family:var(--font)!important;
 background:var(--bg)!important;
 color:var(--text)!important;
 }
 
-#MainMenu, footer, header{visibility:hidden;}
+#MainMenu,footer,header{visibility:hidden!important;}
 
 .main .block-container{
-padding:2.5rem 3rem 4rem 3rem;
-max-width:1100px;
+padding:2.2rem 2.8rem 5rem 2.8rem!important;
+max-width:1100px!important;
 }
 
 /* Sidebar */
 section[data-testid="stSidebar"]{
-background:#ffffff;
-border-right:1px solid var(--border);
-}
-
-.sb-title{
-font-size:20px;
-font-weight:800;
-padding:20px;
-}
-
-.sb-step{
-display:flex;
-align-items:center;
-gap:10px;
-padding:10px 20px;
-font-size:14px;
-color:var(--sub);
-cursor:pointer;
-}
-
-.sb-step.active{
-color:var(--accent);
-font-weight:600;
-}
-
-.dot{
-width:8px;
-height:8px;
-border-radius:50%;
-background:#cbd5e1;
-}
-
-.dot.active{
-background:var(--accent);
-box-shadow:0 0 0 4px rgba(14,165,164,0.15);
-}
-
-/* Cards */
-.card{
-background:var(--card);
-border-radius:var(--radius);
-padding:20px;
-box-shadow:var(--shadow);
-transition:all .2s ease;
-}
-
-.card:hover{
-transform:translateY(-2px);
-box-shadow:0 8px 28px rgba(0,0,0,0.06);
+background:#ffffff!important;
+border-right:1px solid var(--border)!important;
 }
 
 /* Buttons */
 .stButton>button{
-background:var(--accent);
-color:white;
-border:none;
-border-radius:10px;
-padding:10px 18px;
-font-weight:600;
-transition:all .2s;
+background:var(--accent)!important;
+color:white!important;
+border-radius:10px!important;
+font-weight:600!important;
 }
 
 .stButton>button:hover{
-background:var(--accent-strong);
-transform:translateY(-1px);
+background:var(--accent2)!important;
 }
 
-/* Inputs */
-textarea{
-border-radius:12px!important;
-border:1px solid var(--border)!important;
-}
-
-/* Hero */
-.hero{
-text-align:center;
-padding:40px 0 30px;
-}
-
-.hero-title{
-font-size:34px;
-font-weight:800;
-letter-spacing:-1px;
+/* Cards */
+.sample-card{
+background:white;
+border:1px solid var(--border);
+border-radius:12px;
+padding:16px;
 margin-bottom:10px;
+box-shadow:var(--shadow-sm);
 }
 
-.hero-sub{
-font-size:16px;
-color:var(--sub);
-max-width:520px;
-margin:auto;
-line-height:1.6;
-}
-
-/* Animation shimmer */
-@keyframes shimmer{
-0%{background-position:-400px 0;}
-100%{background-position:400px 0;}
-}
-
-.shimmer{
-background:linear-gradient(90deg,#eee 25%,#f5f5f5 37%,#eee 63%);
-background-size:400px 100%;
-animation:shimmer 1.4s infinite;
-height:14px;
-border-radius:6px;
-}
-
-/* Floating animation */
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-6px);}
-100%{transform:translateY(0);}
-}
-
-.float{
-animation:float 3s ease-in-out infinite;
-}
-
-/* Footer */
-.footer{
-text-align:center;
-color:#94a3b8;
-font-size:12px;
-margin-top:40px;
+/* Text area */
+textarea{
+border-radius:10px!important;
+border:1px solid var(--border2)!important;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Sidebar ─────────────────────────────────────────────
+# ── Sidebar ──────────────────────────────────────────────────
 def render_sidebar():
     with st.sidebar:
-        st.markdown('<div class="sb-title">vocAI</div>', unsafe_allow_html=True)
+        st.markdown("## vocAI")
+        for num,label,_,_ in STAGES:
+            if st.button(label, key=f"nav_{num}"):
+                st.session_state.active_section = num
 
-        steps = ["Summary","Emotion","Agent","Conversation","Email","Coach"]
-        for i,step in enumerate(steps,1):
-            active = "active" if st.session_state.active_section==i else ""
-            st.markdown(f'<div class="sb-step {active}"><div class="dot {active}"></div>{step}</div>', unsafe_allow_html=True)
-
-# ── Input Page ─────────────────────────────────────────────
+# ── Render Sidebar ──────────────────────────────────────────
 render_sidebar()
 
+# ── INPUT PAGE ──────────────────────────────────────────────
 if st.session_state.stage == "input":
 
-    st.markdown("""
-    <div class="hero">
-        <div class="hero-title">Turn conversations into clarity</div>
-        <div class="hero-sub">
-            Analyze customer calls, extract insights, and generate actions — instantly.
-        </div>
+    st.markdown('''
+    <div style="font-size:44px;font-weight:900;">
+    voc<span style="color:#0ea5a4;">AI</span>
     </div>
-    """, unsafe_allow_html=True)
+    <div style="color:#64748b;margin-bottom:20px;">
+    Call Intelligence Platform
+    </div>
+    ''', unsafe_allow_html=True)
 
-    tab1,tab2,tab3 = st.tabs(["Sample","Upload","Paste"])
+    tab1,tab2,tab3 = st.tabs(["Sample Calls","Upload Audio","Paste Transcript"])
 
     with tab3:
-        ti = st.text_area("",height=250)
-        if st.button("Run Analysis",use_container_width=True):
+        ti = st.text_area("", height=250)
+        if st.button("Run Analysis"):
             if ti.strip():
-                st.session_state.transcript=ti
-                st.session_state.stage="analyzing"
+                st.session_state.transcript = ti
+                st.session_state.stage = "analyzing"
                 st.rerun()
 
     with tab1:
-        for i,s in enumerate(SAMPLE_CALLS):
-            st.markdown(f'<div class="card">{s["title"]}</div>', unsafe_allow_html=True)
-            if st.button("Analyze",key=i):
-                st.session_state.transcript=s["transcript"]
-                st.session_state.stage="analyzing"
+        for idx,s in enumerate(SAMPLE_CALLS):
+            st.markdown(f'<div class="sample-card">{s["title"]}</div>', unsafe_allow_html=True)
+            if st.button("Analyze", key=f"s{idx}"):
+                st.session_state.transcript = s["transcript"]
+                st.session_state.stage = "analyzing"
                 st.rerun()
 
-# ── Analyzing ─────────────────────────────────────────────
+    with tab2:
+        uploaded = st.file_uploader("Upload file", type=["mp3","wav","m4a"])
+        if uploaded:
+            if st.button("Transcribe & Analyze"):
+                st.session_state.transcript = "audio transcript"
+                st.session_state.stage = "analyzing"
+                st.rerun()
+
+# ── ANALYZING ──────────────────────────────────────────────
 elif st.session_state.stage == "analyzing":
 
-    st.markdown("""
-    <div style="text-align:center;padding:80px;">
-        <img class="float" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" width="120">
-        <h2>Analyzing your call...</h2>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<h2>Analyzing...</h2>", unsafe_allow_html=True)
 
     pb = st.progress(0)
     st_ = st.empty()
 
     if groq_api_key:
-        result = analyze_transcript(st.session_state.transcript, groq_api_key, pb, st_, [])
-        st.session_state.analysis=result
-        st.session_state.stage="results"
+        result = analyze_transcript(
+            st.session_state.transcript,
+            groq_api_key,
+            pb,
+            st_,
+            ANALYSIS_STEPS
+        )
+        st.session_state.analysis = result
+        st.session_state.stage = "results"
         st.rerun()
 
-# ── Results ─────────────────────────────────────────────
+# ── RESULTS ────────────────────────────────────────────────
 elif st.session_state.stage == "results":
+    st.write("Results loaded")
 
-    st.markdown('<div class="card">Results Loaded ✅</div>', unsafe_allow_html=True)
-
-# ── Footer ─────────────────────────────────────────────
-st.markdown('<div class="footer">vocAI · AI Call Intelligence</div>', unsafe_allow_html=True)
+# ── Footer ────────────────────────────────────────────────
+st.markdown("<div style='text-align:center;color:#94a3b8;'>vocAI · AI Call Intelligence</div>", unsafe_allow_html=True)
