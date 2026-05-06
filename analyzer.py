@@ -2,17 +2,21 @@ import json
 import time
 from groq import Groq
 
-ANALYSIS_PROMPT = """You are vocAI, an expert customer service call analyzer. Analyze the given transcript and return a complete JSON analysis.
+ANALYSIS_PROMPT = """You are vocAI, an advanced customer service call analysis system designed to extract structured insights from conversational data.
+Carefully analyze the provided call transcript and return a comprehensive JSON object capturing all key details, insights, and inferred signals from the conversation.
+Your output must be:
 
-Return ONLY valid JSON — no markdown, no explanation, no backticks.
+Strictly valid JSON only
+Fully structured and consistent
+Free from any markdown, backticks, explanations, or additional commentary
 
 The JSON must follow this exact structure:
 {
   "stage1": {
     "summary": "5-10 sentence summary of the full call",
-    "issue_type": "one of: Billing / Technical / Cancellation / Complaint / Inquiry / Upgrade",
-    "intent": "one of: Refund / Support / Upgrade / Complaint / Inquiry / Cancellation",
-    "resolution": "one of: Resolved / Unresolved / Escalated"
+    "issue_type": "one of: Billing / Technical / Account Access / Orders & Delivery / Refunds & Returns / Cancellation / Subscription Management / Complaint / Inquiry / Security & Fraud",
+    "intent": "one of: Resolve Issue / Request Refund / Cancel Service / Upgrade Plan / Downgrade Plan / Get Information / Report Problem / Modify Existing Request / Provide Feedback / Account Recovery / Urgent Assistance / Other",
+    "resolution": "one of: Resolved / Unresolved / Escalated / In Progress / Pending Customer / Pending Internal"
   },
   "stage2": {
     "sentiment_phases": {
