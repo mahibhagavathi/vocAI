@@ -8,8 +8,9 @@ st.set_page_config(
     page_title="vocAI – Call Intelligence",
     page_icon="🎙️",
     layout="wide",
-    initial_sidebar_state="expanded"
-    # ─── Sidebar state control ─────────────────────────────
+    initial_sidebar_state="expanded")
+
+ # ─── Sidebar state control ─────────────────────────────
 if "sidebar_open" not in st.session_state:
     st.session_state.sidebar_open = True
 
