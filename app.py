@@ -9,6 +9,43 @@ st.set_page_config(
     page_icon="🎙️",
     layout="wide",
     initial_sidebar_state="expanded"
+    # ─── Sidebar state control ─────────────────────────────
+if "sidebar_open" not in st.session_state:
+    st.session_state.sidebar_open = True
+
+if st.session_state.sidebar_open:
+    st.markdown("""
+    <script>
+        const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
+        if (sidebar) sidebar.style.display = "block";
+    </script>
+    """, unsafe_allow_html=True)
+else:
+    st.markdown("""
+    <script>
+        const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
+        if (sidebar) sidebar.style.display = "none";
+    </script>
+    """, unsafe_allow_html=True)
+
+# ─── Floating toggle button (always visible) ───────────
+st.markdown("""
+<style>
+#sidebarToggle {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 999999;
+}
+</style>
+""", unsafe_allow_html=True)
+
+if st.button(
+    "☰" if not st.session_state.sidebar_open else "✕",
+    key="sidebar_toggle"
+):
+    st.session_state.sidebar_open = not st.session_state.sidebar_open
+    st.rerun()
 )
 
 # ─── Imports ──────────────────────────────────────────────────────────────────
