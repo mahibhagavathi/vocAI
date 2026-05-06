@@ -681,4 +681,4 @@ elif st.session_state.stage == "results":
     elif sec==5: render_stage5(a)
     elif sec==6: render_stage6(a)
 
-st.markdown('<div class="voc-footer">vocAI · Powered by Groq &amp; LLaMA 3.3 · Call Intelligence Platform</div>', unsafe_allow_html=True)
+st.markdown('<div class="voc-footer">vocAI · Powered by Groq &amp; LLaMA 3.3 · Call Intelligence Platform built by Mahitha Bhagavathi</div>', unsafe_allow_html=True)
