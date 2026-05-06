@@ -47,7 +47,6 @@ if st.button(
 ):
     st.session_state.sidebar_open = not st.session_state.sidebar_open
     st.rerun()
-)
 
 # ─── Imports ──────────────────────────────────────────────────────────────────
 from sample_calls import SAMPLE_CALLS
