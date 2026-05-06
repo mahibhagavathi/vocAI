@@ -1043,11 +1043,11 @@ if st.session_state.stage == "input":
     st.markdown("""
    <div class="input-hero-title">
     vocAI <br>
-    <span>From conversations to clarity</span>
-</div>
-<div class="input-hero-sub">
+    <span>From conversations to clarity</span> 
+    </div>
+    <div class="input-hero-sub">
     Upload an audio file, paste a transcript, or use a sample call. In seconds, vocAI breaks it down into structured insights using a 6-stage AI analysis engine.
-</div>
+    </div>
     </div>
     """, unsafe_allow_html=True)
 
